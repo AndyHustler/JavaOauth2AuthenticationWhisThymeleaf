@@ -1,0 +1,10 @@
+<div th:fragment="admin" class="container">
+    <h1>Welcome Admin!</h1>
+    <div class="alert" role="alert">
+        <span>Сообщение</span>
+        <span th:text="${message}"></span>
+    </div>
+    <div sec:authorize="hasRole('USER')">Этот текст виден только пользователю с ролью USER.</div>
+    <div sec:authorize="hasRole('ADMIN')">Этот текст виден только пользователю с ролью ADMIN.</div>
+    <a href="/" id="test">Home</a>
+</div>

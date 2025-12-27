@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{index :: #head}"></head>
+    <body>
+        <div class="alert alert-danger" role="alert">
+            <span th:text="${errorMessage}"></span>
+        </div>
+    </body>
+</html>

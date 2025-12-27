@@ -1,0 +1,60 @@
+.navbar {
+  padding: 0 10px;
+}
+
+.nav-link:hover {
+  text-decoration-line: underline;
+  color: var(--bs-blue);
+}
+
+
+*.icon-dark {
+  color: grey;
+}
+
+.message {
+  position: absolute;
+  top: 40px;
+  right:5px;
+}
+
+.search {
+  position: relative;
+}
+
+/*.search input {
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}*/
+
+.search input:focus {
+  box-shadow: none;
+  border: 1px solid grey;
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+
+.search button {
+  /*position: absolute;
+  top: 0px;
+  right: 0px;*/
+  width: 100px;
+  /*background: grey;*/
+}
+
+.search select, input {
+  width: 100%;
+}
+
+.accordion {
+  --bs-accordion-btn-focus-box-shadow: 0;
+  --bs-accordion-active-bg: var(--bs-body-bg);
+}
+
+.kross-data-has-error {
+  background-color: tomato;
+}

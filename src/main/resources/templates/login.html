@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head th:insert="~{index :: #head}">
+    </head>
+    <body>
+        <nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+        <br />
+        <br />
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div th:if="${param.error}">
+                        <div class="alert alert-danger">Невеврный логин или пароль.</div>
+                    </div>
+                    <div th:if="${param.logout}">
+                        <div class="alert alert-success">Вы вышли из приложения.</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="text-center">Вход в приложение</h3>
+                        </div>
+                        <div class="card-body">
+                            <form
+                                    method="post"
+                                    th:action="@{/auth/signin}"
+                                    class="form-horizontal"
+                                    role="form"
+                                    th:object="${user}">
+                                <div class="mb-3">
+                                    <label for="username" class="control-label">Логин *</label>
+                                    <input type="text"
+                                        id="username"
+                                        name="username"
+                                        class="form-control"
+                                        placeholder="Логин"
+                                        value="anspopov"
+                                        th:field="*{username}"
+                                    />
+                                    <p th:errors="*{username}" class="text-danger"
+                                        th:if="${#fields.hasErrors('username')}">
+                                    </p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="control-label">Пароль *</label>
+                                    <input type="password"
+                                        id="password"
+                                        name="password"
+                                        class="form-control"
+                                        placeholder="Пароль"
+                                        value="1"
+                                        th:field="*{password}"
+                                    />
+                                    <p th:errors="*{password}" class="text-danger"
+                                        th:if="${#fields.hasErrors('password')}">
+                                    </p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <button id = "submit" type="submit" class="btn btn-primary">Вход</button>
+                                    <span> Не зарегистрированы?
+                                    <a th:href="@{/auth/register}"> Регистрация</a>
+                                </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

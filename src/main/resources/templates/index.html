@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+    <head id="head">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
+        <title>База АТС</title>
+        <link type="image/png" sizes="16x16" rel="icon" th:href="@{/images/logo-16x16.png}">
+        <link type="image/png" sizes="32x32" rel="icon" th:href="@{/images/logo-32x32.png}">
+        <link type="image/png" sizes="96x96" rel="icon" th:href="@{/images/logo-96x96.png}">
+        <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+        <!--link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/select2.min.css}" /-->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/select2.min.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+        <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+        <!--script type="text/javascript" th:src="@{/webjars/bootstrap/js/select2.min.js}"></script>
+        <script type="text/javascript" th:src="@{/webjars/jquery/jquery.modal.min.js}"></script-->
+        <script type="text/javascript" th:src="@{/js/lib/select2.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/jquery.modal.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/lib/axios.min.js}"></script>
+        <script th:inline="javascript">
+            const LOGIN_URL = /*[[${loginUrl}]]*/'';
+            const REFRESH_URL = /*[[${refreshUrl}]]*/'';
+            console.log('Login URL:', LOGIN_URL);
+            console.log('Refresh URL:', REFRESH_URL);
+        </script>
+        <script type="text/javascript" th:src="@{/js/app/interceptor.js}"></script>
+    </head>
+    <body>
+        <nav th:replace="~{fragments/navbar.html :: navbar}"></nav>
+        <div id="container">
+            [[${message}]]
+        </div>
+    </body>
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            async function load(id, url) {
+                try {
+                    const response = await axios.get(url);
+                    $(id).html(response.data);
+                } catch (error) {
+                    console.error('Reload error: ', error)
+                }
+            }
+            
+            $("a").on("click", (event) => {
+                event.preventDefault();
+                var url = event.target.href;
+                console.log(url)
+                load('#container', url)
+            })
+        });
+    </script>
+</html>

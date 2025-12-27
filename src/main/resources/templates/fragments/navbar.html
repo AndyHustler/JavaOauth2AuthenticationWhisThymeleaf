@@ -1,0 +1,10 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{${mainLink.url}}" th:text="${mainLink.text}"></a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item" th:each="link : ${links}">
+                <a class="nav-link link-offset-2" aria-current="page" th:href="@{${link.url}}" th:text="${link.text}"></a>
+            </li>
+        </ul>        
+    </div>
+</nav>

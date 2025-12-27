@@ -1,0 +1,42 @@
+spring:
+  application: 
+    name: atsdb
+  main:
+    banner-mode: off
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/oauth2test?useSSL=false
+    username: admin
+    password: admin
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    enabled: true
+#  api-docs:
+#    path: /v3/api-docs
+#  show-actuator: true
+
+rsa:
+  private-key: certs/private.pem
+  public-key: certs/public.pem
+
+app:
+  cookie:
+    name:
+      access: access-cookie
+      refresh: refresh-cookie
+    experation:
+      access: 10
+      refresh: 100
+  path:
+    access: /ats
+    authentication: 
+      main: /auth
+      login: /login
+      signin: /signin
+      refresh-token: /token/refresh
