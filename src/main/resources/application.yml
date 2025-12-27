@@ -39,4 +39,4 @@ app:
       main: /auth
       login: /login
       signin: /signin
-      refresh-token: /token/refresh
+      refresh: /token/refresh

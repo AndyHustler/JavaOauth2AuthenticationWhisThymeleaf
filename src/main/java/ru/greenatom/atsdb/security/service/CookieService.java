@@ -30,7 +30,7 @@ public class CookieService {
     @Value("${app.path.access}")
     private String PATH_ACCESS_TOKEN;
 
-    @Value("${app.path.authentication.main}${app.path.authentication.refresh-token}")
+    @Value("${app.path.authentication.main}${app.path.authentication.refresh}")
     private String PATH_REFRESH_TOKEN;
 
     private final AccessTokenService accessTokenService;

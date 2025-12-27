@@ -96,7 +96,7 @@ public class AuthController {
 		}
     }
 	
-	@PostMapping("${app.path.authentication.refresh-token}")
+	@PostMapping("${app.path.authentication.refresh}")
 	public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		log.info("#refreshToken");
 		try {
