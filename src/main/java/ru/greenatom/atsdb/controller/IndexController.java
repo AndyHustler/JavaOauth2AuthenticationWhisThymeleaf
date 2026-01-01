@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import ru.greenatom.atsdb.html.NavBarLink;
-import ru.greenatom.atsdb.security.config.AuthentinticotionUrlConfig;
+import ru.greenatom.atsdb.security.config.AuthenticationUrlConfig;
 
 @Log4j2
 @Controller
 @RequiredArgsConstructor
 public class IndexController {
     
-    private final AuthentinticotionUrlConfig url; 
+    private final AuthenticationUrlConfig url; 
 
     @GetMapping("${app.path.access}/mainMenu")
     public String home(Model model){

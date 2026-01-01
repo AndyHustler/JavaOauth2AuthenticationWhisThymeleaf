@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Component
 @ConfigurationProperties(prefix = "app.path.authentication")
-public class AuthentinticotionUrlConfig {
+public class AuthenticationUrlConfig {
     
     private String main;
     private String login;

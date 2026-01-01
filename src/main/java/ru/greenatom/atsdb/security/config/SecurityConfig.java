@@ -28,6 +28,8 @@ import org.springframework.security.oauth2.server.resource.web.BearerTokenResolv
 public class SecurityConfig {
 
     private final CookieService cookieService;
+    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+    //private final JwtTimestampValidator jwtTimestampValidator;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -45,6 +47,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2
                     .jwt(Customizer.withDefaults())
+                    .authenticationEntryPoint(customAuthenticationEntryPoint)
                 )
                 .build();
     }

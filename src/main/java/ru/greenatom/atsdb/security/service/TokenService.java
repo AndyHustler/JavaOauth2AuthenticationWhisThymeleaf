@@ -15,9 +15,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public abstract class TokenService {
@@ -46,8 +44,6 @@ public abstract class TokenService {
 
     private JwtClaimsSet claimsBuilder(Long experation, String name, String scope) {
         Instant now = Instant.now();
-        log.info("#claimsBuilder now = " + now);
-        log.info("#claimsBuilder experation = " + setExpirationTime(experation));
         return JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(now)
@@ -60,8 +56,4 @@ public abstract class TokenService {
     public Instant setExpirationTime(Long experation) {
         return Instant.now().plus(experation, ChronoUnit.SECONDS);//.MINUTES);
     }
-
-    /*public String getUserNameFromToken(String token) {
-        return decoder.decode(token).getSubject();
-    }*/
 }

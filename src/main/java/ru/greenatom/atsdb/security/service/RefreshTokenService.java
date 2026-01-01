@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j2;
@@ -47,12 +47,10 @@ public class RefreshTokenService extends TokenService{
     }
 
     public RefreshToken verifyExpiration(RefreshToken token) {
-        log.info("#verifyExpiration token expiration = " + token.getExpiryDate());
-        log.info("#verifyExpiration now = " + Instant.now());
         if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
             log.warn("Refresh token was expired.");
             repository.delete(token);
-            throw new OAuth2AuthenticationException("RefreshTokenExpired");
+            throw new InvalidBearerTokenException("Refresh token expired");
         }
         return token;
     }

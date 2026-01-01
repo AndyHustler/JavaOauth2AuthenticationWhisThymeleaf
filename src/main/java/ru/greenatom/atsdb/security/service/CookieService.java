@@ -8,9 +8,7 @@ import org.springframework.web.util.WebUtils;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Service
 @RequiredArgsConstructor
 public class CookieService {
@@ -59,7 +57,7 @@ public class CookieService {
     private Cookie generateCookie(String name, String value, String path, int experation) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath(path);
-        cookie.setMaxAge((experation + 200)); //Время в секундах
+        cookie.setMaxAge((experation + 100)); //Время в секундах
         cookie.setHttpOnly(true);
         return cookie;
     }
@@ -67,7 +65,6 @@ public class CookieService {
     private String getCookieValueByName(HttpServletRequest request, String name) {
         Cookie cookie = WebUtils.getCookie(request, name);
         if (cookie != null) {
-            //log.info("#getCookieValueByName cookie value = " + cookie.getValue());
             return cookie.getValue();
         } else {
             return null;

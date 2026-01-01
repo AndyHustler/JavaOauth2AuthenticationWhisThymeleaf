@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,7 +54,8 @@ public class AuthController {
 		log.info("#authenticateUser username = " + request.username() + ", password = " + request.password());
 
 		if (result.hasErrors()) {
-            log.error("#authenticateUser Validation has error");
+            log.error("#authenticateUser Validation has error:" + result.getFieldErrors());
+			authService.authLinks(model);
 			model.addAttribute("user", request);
             return "login";
         }
@@ -102,8 +103,8 @@ public class AuthController {
 		try {
 			response.addCookie(authService.refreshToken(request));
 			log.info("#refreshToken: Success refreshing.");
-		} catch (OAuth2AuthenticationException e) {
-			log.warn("#refreshToken: refrashing failed: " + e.getError().getErrorCode());
+		} catch (InvalidBearerTokenException e) {
+			log.warn("#refreshToken: refrashing failed: " + e.getLocalizedMessage());
 		}
 	}
 }

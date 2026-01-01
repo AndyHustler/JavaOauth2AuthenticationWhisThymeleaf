@@ -18,8 +18,7 @@ public class RefreshToken {
     @Id
     private String name;
 
-    //@Lob
-    @Column(nullable = false, unique = true, length = 512)
+    @Column(nullable = false, unique = true, length = 1024)
     private String token;
 
     @Column(nullable = false)
