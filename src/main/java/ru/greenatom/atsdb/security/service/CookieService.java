@@ -57,7 +57,7 @@ public class CookieService {
     private Cookie generateCookie(String name, String value, String path, int experation) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath(path);
-        cookie.setMaxAge((experation + 100)); //Время в секундах
+        cookie.setMaxAge((experation + 60)); //Время в секундах
         cookie.setHttpOnly(true);
         return cookie;
     }

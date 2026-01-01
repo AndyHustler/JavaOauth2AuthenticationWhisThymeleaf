@@ -30,7 +30,7 @@ app:
     name:
       access: access-cookie
       refresh: refresh-cookie
-    experation:
+    experation: # in seconds
       access: 10
       refresh: 100
   path:
